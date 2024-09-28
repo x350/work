@@ -5,5 +5,24 @@
 {% endblock %}
 
 {% block body %}
-    Список пациентов.
-{% endblock %}
+  <h1>Пациенты:</h1>
+    {% if not patients %}
+      <h3>Нет пациентов</h3>
+    {% else %}
+      <div>
+          {% for patient in patients %}
+          <div>
+              <p>Name: <a href="{% url 'patients:patient_detail' pk=patient.pk %}">{{ patient.fio }}</a></p>
+              <p>{{ patient.typepatients  }}, {{ patient.fio}}</p>
+                       </div>
+              <hr>
+      </div>
+    {% endfor %}
+    {% endif %}
+    <div>
+      <a href="{% url 'patients:patient_add' %}">
+          Занести нового пациента в базу.
+      </a>
+
+    </div>
+    {% endblock %}

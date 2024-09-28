@@ -1,0 +1,15 @@
+{% extends 'patients/base.html' %}
+
+{% block title %}
+     Пациент.
+{% endblock %}
+
+{% block body %}
+    <h1>Пациент: <strong>{{ patient.fio }}</strong></h1>
+    <div>
+        <div>Archived : {{ patient.archived }}</div>
+    </div>
+
+        <a href="{% url 'patients:patients_list' %}">Назад к списку пациентов</a>
+    </div>
+{% endblock %}
