@@ -1,4 +1,4 @@
-from django.http import HttpRequest
+from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -29,3 +29,13 @@ class PatientsListView(ListView):
     # model = Product
     context_object_name = 'patients'
     queryset = Patient.objects.filter(archived=False)
+
+class PatientDeleteView(DeleteView):
+    model = Patient
+    success_url = reverse_lazy("patients:patients_list")
+
+    def form_valid(self, form):
+        success_url = self.get_success_url()
+        self.object.archived = True
+        self.object.save()
+        return HttpResponseRedirect(success_url)

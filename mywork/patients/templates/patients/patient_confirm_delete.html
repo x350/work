@@ -1,0 +1,23 @@
+{% extends 'patients/base.html' %}
+
+{% block title %}
+    Confirm archived {{ object.fio }}
+{% endblock %}
+
+{% block body %}
+    <h1>Are you sure you want to archived {{ object.fio }}</h1>
+    <br>
+    <div>
+      <a href="{% url 'patients:patient_detail' pk=patient.pk %}">
+          Back to product {{ object.fio }}
+      </a>
+    </div>
+    <br>
+    <div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Archived</button>
+        </form>
+    </div>
+{% endblock %}

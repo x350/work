@@ -12,4 +12,9 @@
 
         <a href="{% url 'patients:patients_list' %}">Назад к списку пациентов</a>
     </div>
+
+    <div>
+        <a href="{% url 'patients:patient_delete' pk=patient.pk %}">Архивация пациента.</a>
+    </div>
+
 {% endblock %}
